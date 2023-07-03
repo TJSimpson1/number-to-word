@@ -36,6 +36,14 @@ public class NumberToWord {
 	}
 
 	public static String getWordEquivalent(String number) {
+		number = number.strip();
+		if(number.charAt(0) == '-') {
+			number = number.substring(1);
+			return "minus " + getWordEquivalent(number);
+		}
+		if(Integer.parseInt(number) == 0) {
+			return "zero";
+		}
 		String[] affixes = { "", " thousand", " million", " billion", " trillion", " quadrillion", " quintillion",
 				" sextillion", " septillion", " octillion", " nonillion", " decillion", " undecillion", " duodecillion",
 				" tredecillion", " quattuordecillion", " quindecillion", " sexdecillion", " septendecillion",
@@ -68,7 +76,7 @@ public class NumberToWord {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getWordEquivalent("684352156844"));
+		System.out.println(getWordEquivalent("-15665165"));
 	}
 
 }
