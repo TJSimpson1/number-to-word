@@ -34,16 +34,25 @@ public class NumberToWord {
 		}
 		return threeDigitWord;
 	}
+	
+	static boolean isNegative;
 
 	public static String getWordEquivalent(String number) {
 		number = number.strip();
 		if(number.charAt(0) == '-') {
+			isNegative = !isNegative;
 			number = number.substring(1);
-			return "minus " + getWordEquivalent(number);
+			return getWordEquivalent(number);
 		}
-		if(Integer.parseInt(number) == 0) {
-			return "zero";
+		try {
+			int num = Integer.parseInt(number);
+			if(num == 0) {
+				return "zero";
+			}
+		} catch (Exception e) {
+			
 		}
+		
 		String[] affixes = { "", " thousand", " million", " billion", " trillion", " quadrillion", " quintillion",
 				" sextillion", " septillion", " octillion", " nonillion", " decillion", " undecillion", " duodecillion",
 				" tredecillion", " quattuordecillion", " quindecillion", " sexdecillion", " septendecillion",
@@ -63,7 +72,13 @@ public class NumberToWord {
 			threeDigitString += ten;
 			threeDigitString += number.charAt(n);
 	        threeDigitString = threeDigitString.strip();
-			int threeDigitNumber = Integer.parseInt(threeDigitString);
+	        int threeDigitNumber = 0;
+	        try {
+	        	threeDigitNumber = Integer.parseInt(threeDigitString);
+	        } catch(NumberFormatException e) {
+	        	return "Invalid number";
+	        }
+			
 			if (threeDigitNumber > 0) {
 				String threeDigitNumberAsWord = getThreeDigitNumberAsWord(threeDigitNumber);
 				wordEquivalent = threeDigitNumberAsWord + affixes[affixIndex] + " " + wordEquivalent;
@@ -72,11 +87,14 @@ public class NumberToWord {
 			affixIndex++;
 			n -= 3;
 		}
+		if(isNegative) {
+			return "negative " + wordEquivalent.strip();
+		}
 		return wordEquivalent.strip();
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getWordEquivalent("-15665165"));
+		System.out.println(getWordEquivalent("-1566515"));
 	}
 
 }
