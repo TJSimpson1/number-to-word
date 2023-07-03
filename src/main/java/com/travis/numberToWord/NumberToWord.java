@@ -35,9 +35,9 @@ public class NumberToWord {
 		return threeDigitWord;
 	}
 	
-	static boolean isNegative;
+	boolean isNegative;
 
-	public static String getWordEquivalent(String number) {
+	public String getWordEquivalent(String number) {
 		number = number.strip();
 		if(number.charAt(0) == '-') {
 			isNegative = !isNegative;
@@ -94,7 +94,8 @@ public class NumberToWord {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getWordEquivalent("-1566515"));
+		NumberToWord ntw = new NumberToWord();
+		System.out.println(ntw.getWordEquivalent(" "));
 	}
 
 }
