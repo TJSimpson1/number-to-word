@@ -39,6 +39,9 @@ public class NumberToWord {
 
 	public String getWordEquivalent(String number) {
 		number = number.strip();
+		if(number.isEmpty()) {
+			return "No number entered";
+		}
 		if(number.charAt(0) == '-') {
 			isNegative = !isNegative;
 			number = number.substring(1);
