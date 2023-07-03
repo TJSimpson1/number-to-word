@@ -64,7 +64,7 @@ public class NumberToWord {
 			affixIndex++;
 			n -= 3;
 		}
-		return wordEquivalent;
+		return wordEquivalent.strip();
 	}
 
 	public static void main(String[] args) {
