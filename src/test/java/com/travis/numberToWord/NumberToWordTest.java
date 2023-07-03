@@ -109,5 +109,16 @@ public class NumberToWordTest {
 	public void test_getWordEquivalent_returnsInvalidNumber_when14_1PassedIn() {
 		assertEquals(ntw.getWordEquivalent("14 1"), "Invalid number");
 	}
+	
+	@Test
+	public void test_getWordEquivalent_returnsNoNumberEntered_whenEmptyStringPassedIn() {
+		assertEquals(ntw.getWordEquivalent(""), "No number entered");
+	}
+	
+	@Test
+	public void test_getWordEquivalent_returnsNoNumberEntered_whenOnlySpacesPassedIn() {
+		assertEquals(ntw.getWordEquivalent("     "), "No number entered");
+	}
+
 
 }
